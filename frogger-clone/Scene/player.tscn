@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1rjskso48co7"]
+
+[ext_resource type="Texture2D" uid="uid://bkinu4chiv3nl" path="res://Assets/placeholder_tileset.png" id="1_kelma"]
+[ext_resource type="Script" uid="uid://kv5jfuj225av" path="res://Scripts/player.gd" id="1_y8w33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8w33"]
+atlas = ExtResource("1_kelma")
+region = Rect2(0, 32, 16, 16)
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_y8w33")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_y8w33")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 17)
+collision_mask = 2
