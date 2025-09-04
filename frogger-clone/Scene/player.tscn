@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1rjskso48co7"]
+[gd_scene load_steps=5 format=3 uid="uid://c1rjskso48co7"]
 
 [ext_resource type="Texture2D" uid="uid://bkinu4chiv3nl" path="res://Assets/placeholder_tileset.png" id="1_kelma"]
 [ext_resource type="Script" uid="uid://kv5jfuj225av" path="res://Scripts/player.gd" id="1_y8w33"]
@@ -6,6 +6,9 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8w33"]
 atlas = ExtResource("1_kelma")
 region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8w33"]
+size = Vector2(14, 14)
 
 [node name="player" type="Node2D"]
 script = ExtResource("1_y8w33")
@@ -16,3 +19,11 @@ texture = SubResource("AtlasTexture_y8w33")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 17)
 collision_mask = 2
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_y8w33")
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
