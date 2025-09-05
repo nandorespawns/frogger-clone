@@ -1,8 +1,9 @@
 extends Node
 
 var CAR = preload("res://Scene/car.tscn")
+@onready var spawn_timer: Timer = $spawn_timer
 
-var default_x = 312
+var default_x = 320
 var default_x_left = -8
 var default_y = 201
 var car_separation_y = 16
@@ -12,38 +13,76 @@ var row_direction = {
 	"right": "right"
 }
 
+#array of dictionaries
+var row_properties = [
+	{
+		"speed": 1,
+		"spawn_timer_duration": 3,
+		"spawn_point": "right",
+		"timer": Timer.new()
+	},
+	{
+		"speed": 0.5,
+		"spawn_timer_duration": 2,
+		"spawn_point": "left",
+		"timer": Timer.new()
+		
+	},
+	{	"speed": 0.8,
+		"spawn_timer_duration": 1.5,
+		"spawn_point": "right",
+		"timer": Timer.new()
+		
+	},
+	{	"speed": 0.5,
+		"spawn_timer_duration": 1.5,
+		"spawn_point": "left",
+		"timer": Timer.new()
+		
+	},
+	{	"speed": 0.2,
+		"spawn_timer_duration": 4,
+		"spawn_point": "right",
+		"timer": Timer.new()
+		
+	}
+]
+
 func _ready() -> void:
+	for row_index in row_properties.size():
+		var properties = row_properties[row_index]
+		
+		var car_timer = properties["timer"]
+		car_timer.wait_time = properties["spawn_timer_duration"]
+		car_timer.one_shot = true
+		add_child(car_timer)
+	
+
+func _process(_delta: float) -> void:
 	populate()
 	
 
 func populate():
-	for row in range(5):
-		var new_car = CAR.instantiate()
-		new_car.position.y = default_y - (car_separation_y * row)
-		add_child(new_car)
-		if row == 0:
-			new_car.direction_picked = row_direction["left"]
-			new_car.position.x = default_x
+	for row_index in row_properties.size():
+		var properties = row_properties[row_index]
+		
+		var car_timer = properties["timer"]
 
-			
-		elif row == 1: 
-			new_car.direction_picked = row_direction["right"]
-			new_car.position.x = default_x_left
-
-			
-		elif row == 2:
-			new_car.direction_picked = row_direction["left"]
-			new_car.position.x = default_x
+		if car_timer.is_stopped():
+			car_timer.start()
+			var new_car = CAR.instantiate()
+			new_car.position.y = default_y - (car_separation_y * row_index)
+			add_child(new_car)
 			
 			
-		elif row == 3:
-			new_car.direction_picked = row_direction["right"]
-			new_car.position.x = default_x_left
-			
-			
-		elif row == 4:
-			new_car.direction_picked = row_direction["left"]
-			new_car.position.x = default_x
-			
-			
-			
+			if (properties["spawn_point"] == "right"):
+				new_car.direction_picked = "left"
+				new_car.position.x = default_x
+				
+			else:
+				new_car.direction_picked = "right"
+				new_car.position.x = default_x_left
+			new_car.animation_speed = properties["speed"]
+		
+		
+	

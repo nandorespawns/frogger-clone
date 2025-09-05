@@ -1,14 +1,16 @@
 extends Node2D
 
 var tile_size = 16
-var inputs = {"move_right": Vector2.RIGHT,
-			"move_left": Vector2.LEFT,
-			"move_up": Vector2.UP,
-			"move_down": Vector2.DOWN}
+var inputs = {
+	"move_right": Vector2.RIGHT,
+	"move_left": Vector2.LEFT,
+	"move_up": Vector2.UP,
+	"move_down": Vector2.DOWN
+}
 
 @onready var ray: RayCast2D = $RayCast2D
 
-var animation_speed = 6
+var animation_speed = 5
 var moving = false
 
 func _ready() -> void:
@@ -32,7 +34,7 @@ func move(dir):
 		
 		tween.tween_property(self, "position",
 		position + inputs[dir] * tile_size,
-		1.0/animation_speed).set_trans(Tween.TRANS_SINE)
+		1.0/animation_speed).set_trans(Tween.TRANS_LINEAR)
 		
 		moving = true
 		await tween.finished
@@ -40,4 +42,4 @@ func move(dir):
 
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
-	print("detected")
+	pass

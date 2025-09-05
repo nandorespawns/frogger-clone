@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg1b81eg7vabw"]
+[gd_scene load_steps=3 format=3 uid="uid://dg1b81eg7vabw"]
 
 [ext_resource type="Script" uid="uid://dl7rkeasuukp8" path="res://Scripts/car_manager.gd" id="1_txd8u"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txd8u"]
+size = Vector2(20, 264)
+
 [node name="car_manager" type="Node"]
 script = ExtResource("1_txd8u")
+
+[node name="spawn_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="dead_zone" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dead_zone"]
+position = Vector2(-129, 121)
+shape = SubResource("RectangleShape2D_txd8u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="dead_zone"]
+position = Vector2(443, 121)
+shape = SubResource("RectangleShape2D_txd8u")
+
+[connection signal="area_entered" from="dead_zone" to="." method="_on_dead_zone_area_entered"]
