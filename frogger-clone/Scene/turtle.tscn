@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://btuwn8q3dax7j"]
+
+[ext_resource type="Texture2D" uid="uid://bkinu4chiv3nl" path="res://Assets/placeholder_tileset.png" id="1_oll54"]
+[ext_resource type="Script" uid="uid://jk5qed1x4d4q" path="res://Scripts/turtle.gd" id="1_y3i3m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3i3m"]
+atlas = ExtResource("1_oll54")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3i3m"]
+size = Vector2(16, 16)
+
+[node name="turtle" type="Node2D"]
+script = ExtResource("1_y3i3m")
+direction_picked = "right"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_y3i3m")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_y3i3m")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]

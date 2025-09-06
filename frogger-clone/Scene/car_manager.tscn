@@ -22,5 +22,3 @@ shape = SubResource("RectangleShape2D_txd8u")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="dead_zone"]
 position = Vector2(443, 121)
 shape = SubResource("RectangleShape2D_txd8u")
-
-[connection signal="area_entered" from="dead_zone" to="." method="_on_dead_zone_area_entered"]

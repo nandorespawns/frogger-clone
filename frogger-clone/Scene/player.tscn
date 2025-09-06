@@ -11,17 +11,14 @@ region = Rect2(0, 32, 16, 16)
 size = Vector2(14, 14)
 
 [node name="player" type="Node2D"]
+z_index = 999
 script = ExtResource("1_y8w33")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_y8w33")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 17)
-collision_mask = 2
-
 [node name="hurtbox" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("RectangleShape2D_y8w33")
