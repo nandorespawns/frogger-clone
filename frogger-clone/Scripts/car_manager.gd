@@ -4,7 +4,7 @@ var CAR = preload("res://Scene/car.tscn")
 @onready var spawn_timer: Timer = $spawn_timer
 
 var default_x = 320
-var default_x_left = -8
+var default_x_left = -12
 var default_y = 201
 var car_separation_y = 16
 
@@ -16,31 +16,31 @@ var row_direction = {
 #array of dictionaries
 var row_properties = [
 	{
-		"speed": 1,
+		"speed": 30,
 		"spawn_timer_duration": 3,
 		"spawn_point": "right",
 		"timer": Timer.new()
 	},
 	{
-		"speed": 0.5,
+		"speed": 50,
 		"spawn_timer_duration": 2,
 		"spawn_point": "left",
 		"timer": Timer.new()
 		
 	},
-	{	"speed": 0.8,
+	{	"speed": 30,
 		"spawn_timer_duration": 1.5,
 		"spawn_point": "right",
 		"timer": Timer.new()
 		
 	},
-	{	"speed": 0.5,
+	{	"speed": 45,
 		"spawn_timer_duration": 1.5,
 		"spawn_point": "left",
 		"timer": Timer.new()
 		
 	},
-	{	"speed": 0.2,
+	{	"speed": 60,
 		"spawn_timer_duration": 4,
 		"spawn_point": "right",
 		"timer": Timer.new()
@@ -72,7 +72,7 @@ func populate():
 			car_timer.start()
 			var new_car = CAR.instantiate()
 			new_car.position.y = default_y - (car_separation_y * row_index)
-			add_child(new_car)
+			new_car.speed = properties["speed"]
 			
 			
 			if (properties["spawn_point"] == "right"):
@@ -82,7 +82,11 @@ func populate():
 			else:
 				new_car.direction_picked = "right"
 				new_car.position.x = default_x_left
-			new_car.animation_speed = properties["speed"]
+			add_child(new_car)
+			
+			
+			
+			
 		
 		
 	
