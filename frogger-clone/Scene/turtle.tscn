@@ -1,11 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://btuwn8q3dax7j"]
+[gd_scene load_steps=7 format=3 uid="uid://btuwn8q3dax7j"]
 
-[ext_resource type="Texture2D" uid="uid://bkinu4chiv3nl" path="res://Assets/placeholder_tileset.png" id="1_oll54"]
 [ext_resource type="Script" uid="uid://jk5qed1x4d4q" path="res://Scripts/turtle.gd" id="1_y3i3m"]
+[ext_resource type="Texture2D" uid="uid://bg1is4u2ohesu" path="res://Assets/turtle_tiles.png" id="2_y3i3m"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3i3m"]
-atlas = ExtResource("1_oll54")
-region = Rect2(16, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhbkp"]
+atlas = ExtResource("2_y3i3m")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ybm"]
+atlas = ExtResource("2_y3i3m")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2max"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhbkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ybm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3i3m"]
 size = Vector2(16, 16)
@@ -14,14 +32,26 @@ size = Vector2(16, 16)
 script = ExtResource("1_y3i3m")
 direction_picked = "right"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_y3i3m")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r2max")
+autoplay = "default"
+frame_progress = 0.866998
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(17, 0)
+sprite_frames = SubResource("SpriteFrames_r2max")
+autoplay = "default"
+frame_progress = 0.866998
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_y3i3m")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(17, 0)
+shape = SubResource("RectangleShape2D_y3i3m")
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]

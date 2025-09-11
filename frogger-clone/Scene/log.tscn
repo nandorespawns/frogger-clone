@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmp8wjody86v0"]
+
+[ext_resource type="Script" uid="uid://cdip1vq3rxqw8" path="res://Scripts/log.gd" id="1_4r1cd"]
+[ext_resource type="Texture2D" uid="uid://cd3xlo52hv7eg" path="res://Assets/log_tiles.png" id="2_4r1cd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llum2"]
+atlas = ExtResource("2_4r1cd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj3b6"]
+atlas = ExtResource("2_4r1cd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_up6f0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llum2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj3b6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r1cd"]
+size = Vector2(14, 13)
+
+[node name="log" type="Node2D"]
+script = ExtResource("1_4r1cd")
+direction_picked = "left"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_up6f0")
+autoplay = "default"
+frame_progress = 0.474653
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 0)
+sprite_frames = SubResource("SpriteFrames_up6f0")
+autoplay = "default"
+frame = 1
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(30, 0)
+sprite_frames = SubResource("SpriteFrames_up6f0")
+autoplay = "default"
+frame_progress = 0.474653
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4r1cd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(30, 0.5)
+shape = SubResource("RectangleShape2D_4r1cd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(15, 0.5)
+shape = SubResource("RectangleShape2D_4r1cd")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

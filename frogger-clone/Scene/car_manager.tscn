@@ -8,9 +8,6 @@ size = Vector2(20, 264)
 [node name="car_manager" type="Node"]
 script = ExtResource("1_txd8u")
 
-[node name="spawn_timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="dead_zone" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 4

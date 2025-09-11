@@ -1,15 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://ff61l4qvlynk"]
 
+[ext_resource type="PackedScene" uid="uid://c4hq5pxvpw1n6" path="res://Scene/lake_manager.tscn" id="1_03iqk"]
 [ext_resource type="PackedScene" uid="uid://dg1b81eg7vabw" path="res://Scene/car_manager.tscn" id="1_4jv7b"]
 [ext_resource type="PackedScene" uid="uid://c1rjskso48co7" path="res://Scene/player.tscn" id="2_w51g1"]
-[ext_resource type="PackedScene" uid="uid://btuwn8q3dax7j" path="res://Scene/turtle.tscn" id="3_4jv7b"]
 
 [node name="Game" type="Node2D"]
+
+[node name="lake_manager" parent="." instance=ExtResource("1_03iqk")]
 
 [node name="car_manager" parent="." instance=ExtResource("1_4jv7b")]
 
 [node name="player" parent="." instance=ExtResource("2_w51g1")]
 position = Vector2(-8, 216)
-
-[node name="turtle" parent="." instance=ExtResource("3_4jv7b")]
-position = Vector2(27, 112)

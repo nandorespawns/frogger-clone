@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk2eglmjgevbg"]
+
+[ext_resource type="Texture2D" uid="uid://cd3xlo52hv7eg" path="res://Assets/log_tiles.png" id="1_2hh83"]
+[ext_resource type="Script" uid="uid://b8p411s8sw66k" path="res://Scripts/logs_3.gd" id="1_7wlmd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llum2"]
+atlas = ExtResource("1_2hh83")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj3b6"]
+atlas = ExtResource("1_2hh83")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wlmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llum2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj3b6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx1sb"]
+size = Vector2(14, 13)
+
+[node name="logs_3" type="Node2D"]
+script = ExtResource("1_7wlmd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7wlmd")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 0)
+sprite_frames = SubResource("SpriteFrames_7wlmd")
+autoplay = "default"
+frame = 1
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(30, 0)
+sprite_frames = SubResource("SpriteFrames_7wlmd")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(45, 0)
+sprite_frames = SubResource("SpriteFrames_7wlmd")
+autoplay = "default"
+frame = 1
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(60, 0)
+sprite_frames = SubResource("SpriteFrames_7wlmd")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="."]
+position = Vector2(75, 0)
+sprite_frames = SubResource("SpriteFrames_7wlmd")
+autoplay = "default"
+frame = 1
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_nx1sb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(30, 0.5)
+shape = SubResource("RectangleShape2D_nx1sb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(15, 0.5)
+shape = SubResource("RectangleShape2D_nx1sb")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(45, 0.5)
+shape = SubResource("RectangleShape2D_nx1sb")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(60, 0.5)
+shape = SubResource("RectangleShape2D_nx1sb")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(75, 0.5)
+shape = SubResource("RectangleShape2D_nx1sb")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4hq5pxvpw1n6"]
+
+[ext_resource type="Script" uid="uid://bq0f4ak2lii24" path="res://Scripts/lake_manager.gd" id="1_wb6so"]
+
+[node name="lake_manager" type="Node"]
+script = ExtResource("1_wb6so")

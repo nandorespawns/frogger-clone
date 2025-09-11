@@ -13,6 +13,7 @@ var direction = {
 @onready var hitbox: Area2D = $hitbox
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
+@onready var animated_sprite_2d_3: AnimatedSprite2D = $AnimatedSprite2D3
 
 func _ready() -> void:
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 	if direction_picked == "right":
 		animated_sprite_2d.flip_h = true
 		animated_sprite_2d_2.flip_h = true
+		animated_sprite_2d_3.flip_h = true
 
 func _physics_process(delta: float) -> void:
 	position.x += direction[direction_picked] * delta

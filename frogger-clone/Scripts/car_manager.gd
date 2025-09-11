@@ -1,7 +1,6 @@
 extends Node
 
 var CAR = preload("res://Scene/car.tscn")
-@onready var spawn_timer: Timer = $spawn_timer
 
 var default_x = 320
 var default_x_left = -12
