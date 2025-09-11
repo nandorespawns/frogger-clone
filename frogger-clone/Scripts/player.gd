@@ -8,6 +8,7 @@ var inputs = {
 	"move_down": Vector2.DOWN
 }
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var animation_speed = 0.2
 var moving = false
@@ -24,6 +25,14 @@ func _unhandled_input(event):
 		return
 	for dir in inputs.keys():
 		if event.is_action_pressed(dir):
+			if dir == "move_up":
+				animated_sprite_2d.play("default_up")
+			elif dir == "move_down":
+				animated_sprite_2d.play("down")
+			elif dir == "move_left":
+				animated_sprite_2d.play("left")
+			elif dir == "move_right":
+				animated_sprite_2d.play("right")
 			move(dir)
 
 func move(dir):
