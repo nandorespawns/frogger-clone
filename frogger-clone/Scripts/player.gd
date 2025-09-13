@@ -9,16 +9,24 @@ var inputs = {
 }
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurtbox: Area2D = $hurtbox
 
 var animation_speed = 0.2
 var moving = false
-
+var is_dead = false
 
 func _ready() -> void:
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size/2
 
-
+func _physics_process(_delta: float) -> void:
+	var areas = hurtbox.get_overlapping_areas()
+	var is_on_lake = areas.size() > 0 and areas.all(func (i): return i.name == "Lake")
+	var is_on_car = areas.size() > 0 and areas.all(func (i): return i.collision_layer == 4)
+	
+	if is_on_lake or is_on_car:
+		die()
+	
 
 func _unhandled_input(event):
 	if moving:
@@ -46,6 +54,5 @@ func move(dir):
 	await tween.finished
 	moving = false
 
-
-func _on_hurtbox_area_entered(_area: Area2D) -> void:
-	pass
+func die():
+	is_dead = true

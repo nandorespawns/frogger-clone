@@ -60,6 +60,7 @@ move_right={
 2d_physics/layer_2="turtlenlogs"
 2d_physics/layer_3="car"
 2d_physics/layer_5="dead_zone"
+2d_physics/layer_6="lake"
 
 [rendering]
 

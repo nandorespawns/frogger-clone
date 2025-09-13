@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://jvmtcb7kmn31"]
+
+[ext_resource type="Texture2D" uid="uid://dcjcjpwbtjq8w" path="res://Assets/car_tiles.png" id="1_1dtdh"]
+[ext_resource type="Script" uid="uid://qmmt6lwgm55o" path="res://Scripts/car_3.gd" id="1_bm2vh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm2vh"]
+atlas = ExtResource("1_1dtdh")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvy2t"]
+atlas = ExtResource("1_1dtdh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ylhld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm2vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvy2t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jchgq"]
+size = Vector2(16, 16)
+
+[node name="car3" type="Node2D"]
+script = ExtResource("1_bm2vh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ylhld")
+autoplay = "default"
+frame_progress = 0.597971
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_jchgq")
+debug_color = Color(0.982896, 0.129411, 3.85046e-07, 0.42)
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -3,6 +3,7 @@ extends Node2D
 var tile_size = 16
 var speed: float
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
 
 var direction = {
 	"right": 0,
@@ -21,7 +22,12 @@ func _ready() -> void:
 	}
 	
 	if direction_picked == "right":
+		var temp_position = animated_sprite_2d.position
+		animated_sprite_2d.position = animated_sprite_2d_2.position
+		animated_sprite_2d_2.position = temp_position
+		
 		animated_sprite_2d.flip_h = true
+		animated_sprite_2d_2.flip_h = true
 	
 
 func _physics_process(delta: float) -> void:

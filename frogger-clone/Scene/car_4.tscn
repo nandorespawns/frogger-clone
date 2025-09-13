@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://1uhnn3g7nwo"]
+
+[ext_resource type="Script" uid="uid://bp8tfymmvsffi" path="res://Scripts/car_4.gd" id="1_c0lvt"]
+[ext_resource type="Texture2D" uid="uid://dcjcjpwbtjq8w" path="res://Assets/car_tiles.png" id="1_y1apo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0lvt"]
+atlas = ExtResource("1_y1apo")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42aor"]
+atlas = ExtResource("1_y1apo")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy3xq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0lvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42aor")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy3xq"]
+atlas = ExtResource("1_y1apo")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ovls"]
+atlas = ExtResource("1_y1apo")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbeq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy3xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ovls")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jchgq"]
+size = Vector2(16, 16)
+
+[node name="car4" type="Node2D"]
+script = ExtResource("1_c0lvt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sy3xq")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_kbeq5")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_jchgq")
+debug_color = Color(0.982896, 0.129411, 3.85046e-07, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_jchgq")
+debug_color = Color(0.982896, 0.129411, 3.85046e-07, 0.42)
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

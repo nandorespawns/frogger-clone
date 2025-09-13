@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4hq5pxvpw1n6"]
+[gd_scene load_steps=3 format=3 uid="uid://c4hq5pxvpw1n6"]
 
 [ext_resource type="Script" uid="uid://bq0f4ak2lii24" path="res://Scripts/lake_manager.gd" id="1_wb6so"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb6so"]
+size = Vector2(320, 77)
+
 [node name="lake_manager" type="Node"]
 script = ExtResource("1_wb6so")
+
+[node name="Lake" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake"]
+position = Vector2(160, 89.5)
+shape = SubResource("RectangleShape2D_wb6so")
+debug_color = Color(0.812164, 0.00025182, 0.741294, 0.42)

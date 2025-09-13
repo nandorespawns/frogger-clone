@@ -1,5 +1,4 @@
 extends Node2D
-
 var tile_size = 16
 var speed: float
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D

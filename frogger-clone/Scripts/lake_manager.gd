@@ -19,6 +19,7 @@ var row_direction = {
 	"right": "right"
 	}
 
+
 var row_properties = [
 	{
 		"speed": 30,
@@ -58,6 +59,7 @@ var row_properties = [
 	}
 ]
 
+
 func _ready() -> void:
 	for row_index in row_properties.size():
 		var properties = row_properties[row_index]
@@ -67,10 +69,11 @@ func _ready() -> void:
 		instance_timer.one_shot = true
 		add_child(instance_timer)
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	populate()
 	
-	
+
 
 func populate():
 	for row_index in row_properties.size():
