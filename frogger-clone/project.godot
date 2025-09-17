@@ -61,6 +61,8 @@ move_right={
 2d_physics/layer_3="car"
 2d_physics/layer_5="dead_zone"
 2d_physics/layer_6="lake"
+2d_physics/layer_7="goal"
+2d_physics/layer_8="filled_goal"
 
 [rendering]
 

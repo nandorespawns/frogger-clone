@@ -203,10 +203,10 @@ sprite_frames = SubResource("SpriteFrames_2sw5t")
 animation = &"default_up"
 
 [node name="hurtbox" type="Area2D" parent="."]
-collision_mask = 38
+collision_mask = 230
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_y8w33")
 
-[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_shape_entered" from="hurtbox" to="." method="_on_hurtbox_area_shape_entered"]

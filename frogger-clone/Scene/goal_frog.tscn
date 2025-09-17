@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://u00873bg6118"]
+
+[ext_resource type="Texture2D" uid="uid://biqe2h60b41tr" path="res://Assets/goal_frog_tile.png" id="1_21x5e"]
+
+[node name="goal_frog" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_21x5e")

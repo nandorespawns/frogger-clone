@@ -13,7 +13,10 @@ var inputs = {
 
 var animation_speed = 0.2
 var moving = false
-var is_dead = false
+var must_respawn = false
+
+var goal_entered = null
+
 
 func _ready() -> void:
 	position = position.snapped(Vector2.ONE * tile_size)
@@ -23,9 +26,14 @@ func _physics_process(_delta: float) -> void:
 	var areas = hurtbox.get_overlapping_areas()
 	var is_on_lake = areas.size() > 0 and areas.all(func (i): return i.name == "Lake")
 	var is_on_car = areas.size() > 0 and areas.all(func (i): return i.collision_layer == 4)
+	var is_on_goal = areas.size() > 0 and areas.all(func(i): return i.name == "goal")
+	
 	
 	if is_on_lake or is_on_car:
-		die()
+		respawn()
+		
+	if is_on_goal:
+		respawn()
 	
 
 func _unhandled_input(event):
@@ -54,5 +62,11 @@ func move(dir):
 	await tween.finished
 	moving = false
 
-func die():
-	is_dead = true
+func respawn():
+	must_respawn = true
+
+
+func _on_hurtbox_area_shape_entered(_area_rid: RID, area: Area2D, area_shape_index: int, _local_shape_index: int) -> void:
+	if area.name == "goal":
+		goal_entered = area_shape_index
+		

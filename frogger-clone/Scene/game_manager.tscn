@@ -1,6 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://c55gqhoe46kry"]
+[gd_scene load_steps=3 format=3 uid="uid://c55gqhoe46kry"]
 
 [ext_resource type="Script" uid="uid://mq34onjxwtfd" path="res://Scripts/game_manager.gd" id="1_5n28g"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5n28g"]
+size = Vector2(30, 15)
+
 [node name="game_manager" type="Node"]
 script = ExtResource("1_5n28g")
+
+[node name="goal_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="goal" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="goal_0" type="CollisionShape2D" parent="goal"]
+position = Vector2(32, 39.5)
+shape = SubResource("RectangleShape2D_5n28g")
+debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)
+
+[node name="goal_1" type="CollisionShape2D" parent="goal"]
+position = Vector2(96, 39.5)
+shape = SubResource("RectangleShape2D_5n28g")
+debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)
+
+[node name="goal_2" type="CollisionShape2D" parent="goal"]
+position = Vector2(160, 39.5)
+shape = SubResource("RectangleShape2D_5n28g")
+debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)
+
+[node name="goal_3" type="CollisionShape2D" parent="goal"]
+position = Vector2(224, 39.5)
+shape = SubResource("RectangleShape2D_5n28g")
+debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)
+
+[node name="goal_4" type="CollisionShape2D" parent="goal"]
+position = Vector2(288, 39.5)
+shape = SubResource("RectangleShape2D_5n28g")
+debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)

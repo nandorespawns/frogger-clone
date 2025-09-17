@@ -74,7 +74,6 @@ func _process(_delta: float) -> void:
 	populate()
 	
 
-
 func populate():
 	for row_index in row_properties.size():
 		var properties = row_properties[row_index]

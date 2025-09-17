@@ -18,35 +18,35 @@ var row_direction = {
 #array of dictionaries
 var row_properties = [
 	{
-		"speed": 30,
+		"speed": 0, #30
 		"spawn_timer_duration": 3,
 		"spawn_point": "right",
 		"timer": Timer.new(),
 		"instance": CAR
 	},
 	{
-		"speed": 50,
+		"speed": 0,#50
 		"spawn_timer_duration": 2,
 		"spawn_point": "left",
 		"timer": Timer.new(),
 		"instance": CAR_2
 		
 	},
-	{	"speed": 30,
+	{	"speed": 0, #30
 		"spawn_timer_duration": 1.5,
 		"spawn_point": "right",
 		"timer": Timer.new(),
 		"instance": CAR_3
 		
 	},
-	{	"speed": 45,
+	{	"speed": 0, #45
 		"spawn_timer_duration": 1.5,
 		"spawn_point": "left",
 		"timer": Timer.new(),
 		"instance": CAR
 		
 	},
-	{	"speed": 100,
+	{	"speed": 0,#100
 		"spawn_timer_duration": 4,
 		"spawn_point": "right",
 		"timer": Timer.new(),
