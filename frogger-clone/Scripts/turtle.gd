@@ -13,9 +13,12 @@ var direction = {
 @onready var hitbox: Area2D = $hitbox
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
+@onready var submerge_timer: Timer = $submerge_timer
+
+const SUBMERGE_TIMER_RANGE = [1, 8]
 
 func _ready() -> void:
-
+	submerge_timer.start(randf_range(SUBMERGE_TIMER_RANGE[0], SUBMERGE_TIMER_RANGE[1])) 
 	
 	direction = {
 		"right": speed,
@@ -27,6 +30,7 @@ func _ready() -> void:
 		animated_sprite_2d_2.flip_h = true
 
 func _physics_process(delta: float) -> void:
+	submerge_turtle()
 	position.x += direction[direction_picked] * delta
 	
 	var areas = hitbox.get_overlapping_areas()
@@ -35,7 +39,25 @@ func _physics_process(delta: float) -> void:
 		if area.name == "hurtbox":
 			var player = area.get_parent()
 			player.position.x += direction[direction_picked] * delta
+			
+			
+	
 
+var is_turtle_under = false
+func submerge_turtle():
+	var random_num = randf_range(SUBMERGE_TIMER_RANGE[0], SUBMERGE_TIMER_RANGE[1])
+	if submerge_timer.is_stopped():
+		submerge_timer.start()
+		submerge_timer.wait_time = 2.6 if is_turtle_under else random_num
+		is_turtle_under = !is_turtle_under
+		
+		var animation_name = "under" if is_turtle_under else "default"
+		
+		for node in get_children().filter(func (node): return node is AnimatedSprite2D):
+			node.play(animation_name)
+			
+		for h in hitbox.get_children():
+			h.disabled = is_turtle_under
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

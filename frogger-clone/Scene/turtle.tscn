@@ -96,6 +96,7 @@ direction_picked = "right"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r2max")
+animation = &"under"
 autoplay = "default"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
@@ -113,5 +114,8 @@ shape = SubResource("RectangleShape2D_y3i3m")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(17, 0)
 shape = SubResource("RectangleShape2D_y3i3m")
+
+[node name="submerge_timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
