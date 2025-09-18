@@ -18,35 +18,35 @@ var row_direction = {
 #array of dictionaries
 var row_properties = [
 	{
-		"speed": 0, #30
+		"speed": 30,
 		"spawn_timer_duration": 3,
 		"spawn_point": "right",
 		"timer": Timer.new(),
 		"instance": CAR
 	},
 	{
-		"speed": 0,#50
+		"speed": 50,
 		"spawn_timer_duration": 2,
 		"spawn_point": "left",
 		"timer": Timer.new(),
 		"instance": CAR_2
-		
 	},
-	{	"speed": 0, #30
+	{	
+		"speed": 30,
 		"spawn_timer_duration": 1.5,
 		"spawn_point": "right",
 		"timer": Timer.new(),
 		"instance": CAR_3
-		
 	},
-	{	"speed": 0, #45
+	{	
+		"speed": 45,
 		"spawn_timer_duration": 1.5,
 		"spawn_point": "left",
 		"timer": Timer.new(),
 		"instance": CAR
-		
 	},
-	{	"speed": 0,#100
+	{	
+		"speed": 100,
 		"spawn_timer_duration": 4,
 		"spawn_point": "right",
 		"timer": Timer.new(),
@@ -65,7 +65,8 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	populate()
+	#populate()
+	pass
 	
 
 func populate():
@@ -80,19 +81,11 @@ func populate():
 			new_car.position.y = default_y - (car_separation_y * row_index)
 			new_car.speed = properties["speed"]
 			
-			
 			if (properties["spawn_point"] == "right"):
 				new_car.direction_picked = "left"
 				new_car.position.x = default_x
-				
 			else:
 				new_car.direction_picked = "right"
 				new_car.position.x = default_x_left
+				
 			add_child(new_car)
-			
-			
-			
-			
-		
-		
-	
