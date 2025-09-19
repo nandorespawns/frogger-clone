@@ -5,7 +5,9 @@ const TURTLE_2 = preload("res://Scene/turtle_2.tscn")
 const LOG = preload("res://Scene/log.tscn")
 const LOGS_2 = preload("res://Scene/logs_2.tscn")
 const LOGS_3 = preload("res://Scene/logs_3.tscn")
-
+const CROC = preload("res://Scene/croc.tscn")
+const CROC_2 = preload("res://Scene/croc_2.tscn")
+const CROC_3 = preload("res://Scene/croc_3.tscn")
 #From bottom to top, rows 1 and 4 are turtle rows, rest are log rows
 
 var default_x_right = 340
@@ -25,34 +27,71 @@ var row_properties = [
 		"speed": 30,
 		"spawn_timer_duration": 4,
 		"spawn_point": "right",
-		"instance": TURTLE_2,
+		"instances": [
+			{
+				"type": TURTLE_2,
+				"spawn_chance": 1	
+			}
+		],
 		"timer": Timer.new()
 	},
 	{
 		"speed": 50,
 		"spawn_timer_duration": 2,
-		"instance": LOG,
+		"instances": [
+			{
+				"type": LOG,
+				"spawn_chance": 1
+			},
+			{
+				"type": CROC,
+				"spawn_chance": 0.05
+			}
+		],	
 		"spawn_point": "left",
 		"timer": Timer.new()
 		
 	},
 	{	"speed": 30,
 		"spawn_timer_duration": 6,
-		"instance": LOGS_3,
+		"instances": [
+			{
+			"type": LOGS_3,
+			"spawn_chance": 1
+			},
+			{
+			"type": CROC_3,
+			"spawn_chance": 0.05
+			}
+		],
 		"spawn_point": "right",
 		"timer": Timer.new()
 		
 	},
 	{	"speed": 45,
 		"spawn_timer_duration": 3,
-		"instance": TURTLE,
+		"instances": [
+			{
+				"type": TURTLE,
+				"spawn_chance": 1	
+			}
+		],
 		"spawn_point": "left",
 		"timer": Timer.new()
 		
 	},
 	{	"speed": 60,
 		"spawn_timer_duration": 4,
-		"instance": LOGS_2,
+		"instances": [
+			{
+				"type": LOGS_2,
+				"spawn_chance": 1
+			},
+			{
+				"type": CROC_2,
+				"spawn_chance": 0.05
+			}
+		],
 		"spawn_point": "right",
 		"timer": Timer.new()
 		
@@ -83,9 +122,22 @@ func populate():
 		if instance_timer.is_stopped():
 			instance_timer.start()
 			
+			var instances = properties["instances"]
 			
-			
-			var new_instance = properties["instance"].instantiate()
+			var index = 0
+			if instances.size() > 1:
+				var chance = randf_range(0, 1)
+				
+				instances.sort_custom(
+					func (a,b): return a["spawn_chance"] < b["spawn_chance"]
+				)
+				
+				for i in range(instances.size()):
+					if chance <= instances[i]["spawn_chance"]:
+						index = i
+						break
+				
+			var new_instance = instances[index]["type"].instantiate()
 			new_instance.position.y = default_y_position - (default_y_separation * row_index)
 			new_instance.speed = properties["speed"]
 			
@@ -98,4 +150,4 @@ func populate():
 				new_instance.direction_picked = "right"
 				new_instance.position.x = default_x_left
 			add_child(new_instance)
-			
+				

@@ -33,7 +33,7 @@ var row_properties = [
 	},
 	{	
 		"speed": 30,
-		"spawn_timer_duration": 1.5,
+		"spawn_timer_duration": 3,
 		"spawn_point": "right",
 		"timer": Timer.new(),
 		"instance": CAR_3
@@ -65,8 +65,8 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	#populate()
-	pass
+	populate()
+	
 	
 
 func populate():
