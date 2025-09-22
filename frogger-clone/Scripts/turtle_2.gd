@@ -9,6 +9,8 @@ var direction = {
 	"left": 0
 }
 
+const SUBMERGE_TIMER_RANGE = [3, 10]
+
 @export var direction_picked: String
 @onready var hitbox: Area2D = $hitbox
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -17,8 +19,8 @@ var direction = {
 @onready var submerge_timer: Timer = $submerge_timer
 
 func _ready() -> void:
-
 	
+	submerge_timer.start(randf_range(SUBMERGE_TIMER_RANGE[0], SUBMERGE_TIMER_RANGE[1]))
 	direction = {
 		"right": speed,
 		"left": -speed
@@ -30,6 +32,8 @@ func _ready() -> void:
 		animated_sprite_2d_3.flip_h = true
 
 func _physics_process(delta: float) -> void:
+	
+	
 	submerge_turtle()
 	position.x += direction[direction_picked] * delta
 	
@@ -42,10 +46,10 @@ func _physics_process(delta: float) -> void:
 
 var is_turtle_under = false
 func submerge_turtle():
+	var random_num = randf_range(SUBMERGE_TIMER_RANGE[0], SUBMERGE_TIMER_RANGE[1])
 	if submerge_timer.is_stopped():
-		submerge_timer.start()
-		submerge_timer.wait_time = 2.6 if is_turtle_under else 4.0
 		is_turtle_under = !is_turtle_under
+		submerge_timer.start(2.66 if is_turtle_under else random_num)
 		
 		var animation_name = "under" if is_turtle_under else "default"
 		

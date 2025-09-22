@@ -15,7 +15,7 @@ var direction = {
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var submerge_timer: Timer = $submerge_timer
 
-const SUBMERGE_TIMER_RANGE = [1, 8]
+const SUBMERGE_TIMER_RANGE = [3, 10]
 
 func _ready() -> void:
 	submerge_timer.start(randf_range(SUBMERGE_TIMER_RANGE[0], SUBMERGE_TIMER_RANGE[1])) 
@@ -47,9 +47,8 @@ var is_turtle_under = false
 func submerge_turtle():
 	var random_num = randf_range(SUBMERGE_TIMER_RANGE[0], SUBMERGE_TIMER_RANGE[1])
 	if submerge_timer.is_stopped():
-		submerge_timer.start()
-		submerge_timer.wait_time = 2.6 if is_turtle_under else random_num
 		is_turtle_under = !is_turtle_under
+		submerge_timer.start(2.66 if is_turtle_under else random_num)
 		
 		var animation_name = "under" if is_turtle_under else "default"
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmqwu0gyyh3ig"]
+[gd_scene load_steps=16 format=3 uid="uid://dmqwu0gyyh3ig"]
 
 [ext_resource type="Texture2D" uid="uid://bg1is4u2ohesu" path="res://Assets/turtle_tiles.png" id="1_460de"]
 [ext_resource type="Script" uid="uid://cq6y46qsnoice" path="res://Scripts/turtle_2.gd" id="1_rma71"]
@@ -11,10 +11,6 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8ybm"]
 atlas = ExtResource("1_460de")
 region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jumxw"]
-atlas = ExtResource("3_qdvfk")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mc8mp"]
 atlas = ExtResource("3_qdvfk")
@@ -48,10 +44,6 @@ region = Rect2(0, 16, 16, 16)
 atlas = ExtResource("3_qdvfk")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l14ov"]
-atlas = ExtResource("3_qdvfk")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_rma71"]
 animations = [{
 "frames": [{
@@ -66,9 +58,6 @@ animations = [{
 "speed": 3.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jumxw")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mc8mp")
 }, {
@@ -92,11 +81,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2uwo1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l14ov")
 }],
-"loop": true,
+"loop": false,
 "name": &"under",
 "speed": 3.0
 }]
@@ -106,6 +92,7 @@ size = Vector2(16, 16)
 
 [node name="turtle2" type="Node2D"]
 script = ExtResource("1_rma71")
+direction_picked = "right"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rma71")
