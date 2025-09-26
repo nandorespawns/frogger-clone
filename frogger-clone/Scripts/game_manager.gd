@@ -20,8 +20,8 @@ func _ready() -> void:
 	player.position.x = player_spawn_x
 	player.position.y = player_spawn_y
 	add_child(player)
-	
-	
+
+
 
 func _process(_delta: float) -> void:
 	respawn()
