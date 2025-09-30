@@ -209,4 +209,7 @@ collision_mask = 230
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_y8w33")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 256
+
 [connection signal="area_shape_entered" from="hurtbox" to="." method="_on_hurtbox_area_shape_entered"]

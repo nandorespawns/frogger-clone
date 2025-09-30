@@ -10,6 +10,7 @@ var inputs = {
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $hurtbox
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 var animation_speed = 0.2
 var moving = false
@@ -52,15 +53,20 @@ func _unhandled_input(event):
 			move(dir)
 
 func move(dir):
-	var tween = create_tween()
 	
-	tween.tween_property(self, "position",
-	position + inputs[dir] * tile_size,
-	animation_speed).set_trans(Tween.TRANS_LINEAR)
+	ray_cast_2d.target_position = inputs[dir] * tile_size
+	ray_cast_2d.force_raycast_update()
+	if !ray_cast_2d.is_colliding():
 	
-	moving = true
-	await tween.finished
-	moving = false
+		var tween = create_tween()
+		
+		tween.tween_property(self, "position",
+		position + inputs[dir] * tile_size,
+		animation_speed).set_trans(Tween.TRANS_LINEAR)
+		
+		moving = true
+		await tween.finished
+		moving = false
 
 func respawn():
 	must_respawn = true

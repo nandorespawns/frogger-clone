@@ -63,6 +63,7 @@ move_right={
 2d_physics/layer_6="lake"
 2d_physics/layer_7="goal"
 2d_physics/layer_8="filled_goal"
+2d_physics/layer_9="out_of_bounds"
 
 [rendering]
 
