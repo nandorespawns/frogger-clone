@@ -28,9 +28,9 @@ func _physics_process(_delta: float) -> void:
 	var is_on_lake = areas.size() > 0 and areas.all(func (i): return i.name == "Lake")
 	var is_on_car = areas.size() > 0 and areas.all(func (i): return i.collision_layer == 4)
 	var is_on_goal = areas.size() > 0 and areas.all(func(i): return i.name == "goal")
+	var is_out_of_bounds = areas.size() > 0 and areas.any(func(i): return i.name == "Out_of_bounds")
 	
-	
-	if is_on_lake or is_on_car:
+	if is_on_lake or is_on_car or is_out_of_bounds:
 		respawn()
 		
 	if is_on_goal:
