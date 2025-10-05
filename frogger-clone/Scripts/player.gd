@@ -18,23 +18,30 @@ var must_respawn = false
 
 var goal_entered = null
 
+var dead = false
+signal died
 
 func _ready() -> void:
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size/2
 
 func _physics_process(_delta: float) -> void:
-	var areas = hurtbox.get_overlapping_areas()
-	var is_on_lake = areas.size() > 0 and areas.all(func (i): return i.name == "Lake")
-	var is_on_car = areas.size() > 0 and areas.all(func (i): return i.collision_layer == 4)
-	var is_on_goal = areas.size() > 0 and areas.all(func(i): return i.name == "goal")
-	var is_out_of_bounds = areas.size() > 0 and areas.any(func(i): return i.name == "Out_of_bounds")
-	
-	if is_on_lake or is_on_car or is_out_of_bounds:
-		respawn()
+	if !dead:
+		var areas = hurtbox.get_overlapping_areas()
+		var is_on_lake = areas.size() > 0 and areas.all(func (i): return i.name == "Lake")
+		var is_on_car = areas.size() > 0 and areas.all(func (i): return i.collision_layer == 4)
+		var is_on_goal = areas.size() > 0 and areas.all(func(i): return i.name == "goal")
+		var is_out_of_bounds = areas.size() > 0 and areas.any(func(i): return i.name == "Out_of_bounds")
 		
-	if is_on_goal:
-		respawn()
+		
+		if is_on_lake or is_on_car or is_out_of_bounds:
+			dead = true
+			died.emit()
+			
+			
+		if is_on_goal:
+			died.emit()
+
 	
 
 func _unhandled_input(event):
@@ -52,24 +59,36 @@ func _unhandled_input(event):
 				animated_sprite_2d.play("right")
 			move(dir)
 
+
+
+var tween
 func move(dir):
 	
 	ray_cast_2d.target_position = inputs[dir] * tile_size
 	ray_cast_2d.force_raycast_update()
 	if !ray_cast_2d.is_colliding():
-	
-		var tween = create_tween()
+		tween = create_tween()
+		
+		
+		var current_platform_direction = 0
+		var areas = hurtbox.get_overlapping_areas()
+		for area in areas:
+			if area.collision_layer == 2:
+				var platform = area.get_parent()
+				current_platform_direction = platform.direction[platform.direction_picked] 
+				
+				
+			
+		
 		
 		tween.tween_property(self, "position",
-		position + inputs[dir] * tile_size,
+		position + inputs[dir] * tile_size + Vector2.RIGHT * current_platform_direction * animation_speed,
 		animation_speed).set_trans(Tween.TRANS_LINEAR)
 		
 		moving = true
 		await tween.finished
 		moving = false
-
-func respawn():
-	must_respawn = true
+	
 
 
 func _on_hurtbox_area_shape_entered(_area_rid: RID, area: Area2D, area_shape_index: int, _local_shape_index: int) -> void:

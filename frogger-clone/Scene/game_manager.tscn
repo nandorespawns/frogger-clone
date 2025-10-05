@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c55gqhoe46kry"]
+[gd_scene load_steps=4 format=3 uid="uid://c55gqhoe46kry"]
 
 [ext_resource type="Script" uid="uid://mq34onjxwtfd" path="res://Scripts/game_manager.gd" id="1_5n28g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5n28g"]
 size = Vector2(30, 15)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5n28g"]
+bg_color = Color(0.16172, 0.898165, 1.54018e-06, 1)
+
 [node name="game_manager" type="Node"]
 script = ExtResource("1_5n28g")
-
-[node name="goal_timer" type="Timer" parent="."]
-one_shot = true
 
 [node name="goal" type="Area2D" parent="."]
 collision_layer = 64
@@ -38,3 +38,52 @@ debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)
 position = Vector2(288, 39.5)
 shape = SubResource("RectangleShape2D_5n28g")
 debug_color = Color(0.101359, 0.875509, 3.85046e-07, 0.42)
+
+[node name="time_bar" type="ProgressBar" parent="."]
+offset_left = 226.0
+offset_top = 3.0
+offset_right = 316.0
+offset_bottom = 13.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_5n28g")
+value = 100.0
+show_percentage = false
+
+[node name="time_txt" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 1.0
+offset_right = 240.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "TIME"
+
+[node name="score_txt" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 43.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "SCORE:"
+
+[node name="score_num" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 1.0
+offset_right = 80.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "0"
+
+[node name="frogs_rem_txt" type="Label" parent="."]
+offset_left = 95.0
+offset_top = 1.0
+offset_right = 176.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "FROGS LEFT:"
+
+[node name="frogs_rem_num" type="Label" parent="."]
+offset_left = 157.0
+offset_top = 1.0
+offset_right = 197.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 10
+text = "6"
