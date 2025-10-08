@@ -21,6 +21,11 @@ var goal_entered = null
 var dead = false
 signal died
 
+var current_y
+var previous_y 
+var total_travelled_y = 1000
+signal gain_walk_score 
+
 func _ready() -> void:
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size/2
@@ -41,6 +46,8 @@ func _physics_process(_delta: float) -> void:
 			
 		if is_on_goal:
 			died.emit()
+			
+		
 
 	
 
@@ -58,8 +65,7 @@ func _unhandled_input(event):
 			elif dir == "move_right":
 				animated_sprite_2d.play("right")
 			move(dir)
-
-
+			
 
 var tween
 func move(dir):
@@ -85,9 +91,21 @@ func move(dir):
 		position + inputs[dir] * tile_size + Vector2.RIGHT * current_platform_direction * animation_speed,
 		animation_speed).set_trans(Tween.TRANS_LINEAR)
 		
+		previous_y = position.y
+		#print("previous", previous_y)
 		moving = true
 		await tween.finished
+		current_y = position.y
+		#print("current", current_y)
+		#print("total", total_travelled_y)
 		moving = false
+		
+		
+		if previous_y > current_y and current_y < total_travelled_y:
+			total_travelled_y = current_y
+			gain_walk_score.emit()
+			
+		
 	
 
 

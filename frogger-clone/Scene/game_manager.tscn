@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c55gqhoe46kry"]
+[gd_scene load_steps=5 format=3 uid="uid://c55gqhoe46kry"]
 
 [ext_resource type="Script" uid="uid://mq34onjxwtfd" path="res://Scripts/game_manager.gd" id="1_5n28g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5n28g"]
 size = Vector2(30, 15)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n28g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5n28g"]
 bg_color = Color(0.16172, 0.898165, 1.54018e-06, 1)
@@ -44,8 +46,10 @@ offset_left = 226.0
 offset_top = 3.0
 offset_right = 316.0
 offset_bottom = 13.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_5n28g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5n28g")
 value = 100.0
+fill_mode = 1
 show_percentage = false
 
 [node name="time_txt" type="Label" parent="."]
@@ -87,3 +91,7 @@ offset_right = 197.0
 offset_bottom = 24.0
 theme_override_font_sizes/font_size = 10
 text = "6"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
