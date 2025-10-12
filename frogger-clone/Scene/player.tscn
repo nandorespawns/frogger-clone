@@ -195,6 +195,7 @@ animations = [{
 size = Vector2(12, 11)
 
 [node name="player" type="Node2D"]
+process_mode = 1
 z_index = 999
 script = ExtResource("1_y8w33")
 

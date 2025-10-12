@@ -21,9 +21,16 @@ var goal_separation_x = tile_size * 4
 @onready var frogs_rem_num: Label = $frogs_rem_num
 @onready var time_bar: ProgressBar = $time_bar
 @onready var timer: Timer = $Timer
+@onready var highsore_num: Label = $highsore_num
+
+
+const GAME_OVER = preload("res://Scene/game_over.tscn")
+var game_over = GAME_OVER.instantiate()
 
 
 func _ready() -> void:
+	add_child(game_over)
+	game_over.visible = false
 	time_bar.max_value = timer.wait_time
 	timer.start()
 	
@@ -38,6 +45,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	timer_tick()
+	highscore_update()
 	
 
 
@@ -78,7 +86,9 @@ func goal_update():
 func lose_live():
 	Global.frogs_remaining -= 1
 	frogs_rem_num.text = str(Global.frogs_remaining)
-	
+	if Global.frogs_remaining < 0:
+		game_lost()
+
 func score_by_move():
 	Global.score += 10
 	score_num.text = str(Global.score)
@@ -93,5 +103,20 @@ func score_by_goal():
 
 func timer_tick():
 	time_bar.value = timer.time_left
+
+func game_lost():
+	get_tree().paused = true
+	game_over.visible = true
+	game_over.get_child(2).text = str(Global.score)
+	game_over.get_child(4).text = str(Global.highscore)
+	timer.paused = true
 	
-	
+	var reset_game = Input.is_action_just_pressed("reset")
+	if reset_game:
+		print("ligma")
+		get_tree().change_scene_to_file("res://Scene/game.tscn")
+		Global.frogs_remaining = 6
+		Global.score = 0
+
+func highscore_update():
+	highsore_num.text = str(Global.highscore)

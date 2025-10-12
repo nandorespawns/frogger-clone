@@ -11,6 +11,7 @@ size = Vector2(30, 15)
 bg_color = Color(0.16172, 0.898165, 1.54018e-06, 1)
 
 [node name="game_manager" type="Node"]
+process_mode = 3
 script = ExtResource("1_5n28g")
 
 [node name="goal" type="Area2D" parent="."]
@@ -53,11 +54,11 @@ fill_mode = 1
 show_percentage = false
 
 [node name="time_txt" type="Label" parent="."]
-offset_left = 200.0
+offset_left = 202.0
 offset_top = 1.0
-offset_right = 240.0
+offset_right = 242.0
 offset_bottom = 24.0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "TIME"
 
 [node name="score_txt" type="Label" parent="."]
@@ -65,32 +66,48 @@ offset_left = 3.0
 offset_top = 1.0
 offset_right = 43.0
 offset_bottom = 24.0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "SCORE:"
 
 [node name="score_num" type="Label" parent="."]
-offset_left = 40.0
+offset_left = 36.0
 offset_top = 1.0
-offset_right = 80.0
+offset_right = 76.0
 offset_bottom = 24.0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "0"
 
 [node name="frogs_rem_txt" type="Label" parent="."]
-offset_left = 95.0
+offset_left = 129.0
 offset_top = 1.0
-offset_right = 176.0
+offset_right = 210.0
 offset_bottom = 24.0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "FROGS LEFT:"
 
 [node name="frogs_rem_num" type="Label" parent="."]
-offset_left = 157.0
+offset_left = 184.0
 offset_top = 1.0
-offset_right = 197.0
+offset_right = 224.0
 offset_bottom = 24.0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "6"
+
+[node name="highscore_txt" type="Label" parent="."]
+offset_left = 55.0
+offset_top = 1.0
+offset_right = 109.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 9
+text = "HIGHSCORE:"
+
+[node name="highsore_num" type="Label" parent="."]
+offset_left = 110.0
+offset_top = 1.0
+offset_right = 150.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 9
+text = "0"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0

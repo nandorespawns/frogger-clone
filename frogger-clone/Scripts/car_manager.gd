@@ -65,10 +65,9 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	#populate()
-	pass
+	populate()
 	
-	
+
 
 func populate():
 	for row_index in row_properties.size():

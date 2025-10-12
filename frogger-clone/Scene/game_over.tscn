@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://h0akk5bfl0ok"]
+
+[node name="game_over" type="Control"]
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="game_over_txt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 23.0
+offset_right = 243.0
+offset_bottom = 62.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "GAME OVER!"
+
+[node name="score_txt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 74.0
+offset_right = 123.0
+offset_bottom = 102.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Score: "
+
+[node name="score_num" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 75.0
+offset_right = 263.0
+offset_bottom = 103.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="highscore_txt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 116.0
+offset_right = 156.0
+offset_bottom = 144.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Highscore:"
+
+[node name="highscore_num" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 116.0
+offset_right = 263.0
+offset_bottom = 144.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 159.0
+offset_right = 282.0
+offset_bottom = 194.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 25
+text = "Press R to try again!"

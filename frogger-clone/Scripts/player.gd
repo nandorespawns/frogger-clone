@@ -31,6 +31,7 @@ func _ready() -> void:
 	position += Vector2.ONE * tile_size/2
 
 func _physics_process(_delta: float) -> void:
+	
 	if !dead:
 		var areas = hurtbox.get_overlapping_areas()
 		var is_on_lake = areas.size() > 0 and areas.all(func (i): return i.name == "Lake")
