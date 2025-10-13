@@ -16,6 +16,7 @@ var goal_position_x = 32.0
 var goal_position_y = 39.5
 var goal_separation_x = tile_size * 4
 
+var is_game_over
 
 @onready var score_num: Label = $score_num
 @onready var frogs_rem_num: Label = $frogs_rem_num
@@ -41,11 +42,11 @@ func _ready() -> void:
 	player.died.connect(respawn)
 	player.gain_walk_score.connect(score_by_move)
 	
-	
 
 func _process(_delta: float) -> void:
 	timer_tick()
 	highscore_update()
+	reset()
 	
 
 
@@ -110,13 +111,20 @@ func game_lost():
 	game_over.get_child(2).text = str(Global.score)
 	game_over.get_child(4).text = str(Global.highscore)
 	timer.paused = true
+	is_game_over = true
 	
-	var reset_game = Input.is_action_just_pressed("reset")
-	if reset_game:
-		print("ligma")
-		get_tree().change_scene_to_file("res://Scene/game.tscn")
-		Global.frogs_remaining = 6
-		Global.score = 0
 
 func highscore_update():
 	highsore_num.text = str(Global.highscore)
+
+func reset():
+	if is_game_over == true:
+		var reset_game = Input.is_action_just_pressed("reset")
+		if reset_game:
+			print("ligma")
+			get_tree().paused = false
+			get_tree().change_scene_to_file("res://Scene/game.tscn")
+			Global.frogs_remaining = 6
+			Global.score = 0
+			game_over.visible = false
+			is_game_over = false
