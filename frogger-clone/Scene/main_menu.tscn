@@ -1,0 +1,139 @@
+[gd_scene load_steps=4 format=3 uid="uid://57rs1xkhc3v0"]
+
+[ext_resource type="Script" uid="uid://sp5evn3wrqrs" path="res://Scripts/main_menu.gd" id="1_kqsxi"]
+[ext_resource type="Texture2D" uid="uid://biqe2h60b41tr" path="res://Assets/goal_frog_tile.png" id="2_87ipw"]
+[ext_resource type="PackedScene" uid="uid://c4hq5pxvpw1n6" path="res://Scene/lake_manager.tscn" id="2_hii65"]
+
+[node name="main_menu" type="Control"]
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqsxi")
+
+[node name="lake_manager" parent="." instance=ExtResource("2_hii65")]
+
+[node name="title" type="Label" parent="."]
+z_index = 999
+layout_mode = 0
+offset_left = 44.0
+offset_top = 79.0
+offset_right = 211.0
+offset_bottom = 114.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 25
+text = "Frogger Clone"
+
+[node name="frogger" type="Sprite2D" parent="."]
+z_index = 999
+position = Vector2(251, 96)
+scale = Vector2(3.28125, 3.28125)
+texture = ExtResource("2_87ipw")
+
+[node name="title_screen" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="start" type="Label" parent="title_screen"]
+z_index = 999
+layout_mode = 0
+offset_left = 140.0
+offset_top = 157.0
+offset_right = 180.0
+offset_bottom = 180.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 15
+text = "Start!"
+
+[node name="how_to_play" type="Label" parent="title_screen"]
+z_index = 999
+layout_mode = 0
+offset_left = 118.0
+offset_top = 183.0
+offset_right = 204.0
+offset_bottom = 206.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 15
+text = "How to play"
+
+[node name="select0" type="TextureRect" parent="title_screen"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 159.0
+offset_right = 227.0
+offset_bottom = 199.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_87ipw")
+
+[node name="select1" type="TextureRect" parent="title_screen"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 186.0
+offset_right = 253.0
+offset_bottom = 226.0
+scale = Vector2(0.5, 0.5)
+
+[node name="how_to_menu" type="Control" parent="."]
+z_index = 999
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="instructions" type="Label" parent="how_to_menu"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 118.0
+offset_right = 324.0
+offset_bottom = 297.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 10
+text = " - Move by pressing the Arrow Keys or WASD
+ - Get each frog to the other side to win!
+ - Avoid cars and don't fall in the water!
+ - Watch out! Turtles can dive underwater 
+briefly and Crocodiles can look like Logs!"
+horizontal_alignment = 1
+
+[node name="got_it" type="Label" parent="how_to_menu"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 213.0
+offset_right = 180.0
+offset_bottom = 236.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "Got it!"
+horizontal_alignment = 1
+
+[node name="select_got_it" type="TextureRect" parent="how_to_menu"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 212.0
+offset_right = 223.0
+offset_bottom = 252.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_87ipw")
+
+[node name="select_cd" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="comment" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 226.0
+offset_right = 96.0
+offset_bottom = 249.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 8
+text = "Z/Space/Enter to select!"

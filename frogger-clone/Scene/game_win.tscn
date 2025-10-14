@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://cmpal23ehhhrb"]
+
+[node name="game_win" type="Control"]
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="you_win_txt" type="Label" parent="."]
+offset_left = 75.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 67.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "YOU WON!"
+horizontal_alignment = 1
+
+[node name="time_saved_txt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 69.0
+offset_right = 174.0
+offset_bottom = 97.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Time saved:"
+
+[node name="time_saved_num" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 69.0
+offset_right = 263.0
+offset_bottom = 97.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="score_txt" type="Label" parent="."]
+offset_left = 59.0
+offset_top = 90.0
+offset_right = 123.0
+offset_bottom = 118.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Score: "
+
+[node name="score_num" type="Label" parent="."]
+offset_left = 223.0
+offset_top = 91.0
+offset_right = 263.0
+offset_bottom = 119.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="frogs_left_txt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 111.0
+offset_right = 221.0
+offset_bottom = 139.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Frogs left:"
+
+[node name="frogs_left_num" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 112.0
+offset_right = 263.0
+offset_bottom = 140.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="total_score_txt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 134.0
+offset_right = 172.0
+offset_bottom = 162.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Total score:"
+
+[node name="total_score_num" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 134.0
+offset_right = 263.0
+offset_bottom = 162.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="highscore_txt" type="Label" parent="."]
+offset_left = 59.0
+offset_top = 172.0
+offset_right = 161.0
+offset_bottom = 200.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Highscore:"
+
+[node name="highscore_num" type="Label" parent="."]
+offset_left = 223.0
+offset_top = 172.0
+offset_right = 263.0
+offset_bottom = 200.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="try_again_txt" type="Label" parent="."]
+offset_left = 43.0
+offset_top = 203.0
+offset_right = 282.0
+offset_bottom = 238.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 25
+text = "Press R to try again!"
